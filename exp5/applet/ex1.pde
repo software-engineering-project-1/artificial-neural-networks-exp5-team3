@@ -67,7 +67,6 @@ void setup()
   {
     mark[g] = false;
   }
-
 }
 void draw()
 {
@@ -339,7 +338,11 @@ void mouseClicked()
     {
       if (mouseButton == LEFT && mouseY -pivotY>0 && mouseY-pivotY<50 && mouseX-(pivotX+100*i)>0 && mouseX-(pivotX+100*i)<75)
       {
-        stateARR[i].selected = true;
+        if (stateARR[i].selected != true) {
+          stateARR[i].selected = true;
+        } else {
+          stateARR[i].selected = false;
+        }
       }
     }
     if (mouseX>320 && mouseX<420 && mouseY>295 && mouseY<325)
