@@ -59,7 +59,6 @@ void createDIAG()
 /////////////////////////////////////////////////////////////////////////////////////////
 void setup()
 {
-  size(640, 360);
   pivotX = 10;
   pivotY = 60;
   setStates();
@@ -68,7 +67,6 @@ void setup()
   {
     mark[g] = false;
   }
-  ellipseMode(CENTER);
 
 }
 void draw()
