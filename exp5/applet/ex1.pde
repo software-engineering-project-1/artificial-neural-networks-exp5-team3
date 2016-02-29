@@ -22,6 +22,8 @@ float[] energyArr = new float[int(pow(2, nUnits))];
 int[] orderSTATES = new int[int(pow(2, nUnits))];
 int drawStartX = 600; 
 int drawStartY = 485;
+boolean select2 = false;
+boolean hamming = false;
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -83,7 +85,11 @@ void drawOPTIONS()
   {
     fill(0, 0, 255);
     textSize(16);
-    text("< WRONG CHOICE::PRESS BUTTON TO ENTER AGAIN >", 170, 150);
+    if (select2) {
+      text("< WRONG CHOICE::Please select exactly 2 inputs>", 170, 150);
+    } else {
+      text("WRONG CHOICE::Inputs must have hamming distance >= 2", 170, 150);
+    }
     noFill();  
     fill(50);
     rect(620, 130, 70, 25);
@@ -357,11 +363,11 @@ void mouseClicked()
     {
       if (mouseY>270+40*i && mouseY < 280+40*i)
       {
-        for (int j=0;j<22;j++)
+        for (int j=0;j<220;j++)
         {
-          if (mouseX<150+20*j)
+          if (mouseX<150+2*j)
           {
-            reTAIN(i, j); 
+            reTAIN(i, j/10); 
             break;
           }
         }
@@ -390,10 +396,7 @@ void mouseClicked()
       {
         stageTHREEshow = false;
         stageTWOshow = true;
-        for (int i=0;i<6;i=i+1)
-        {
-          valA[i] = 0;
-        }
+        
       }
       else if (mouseY>450 && mouseY<485)
       {
@@ -444,9 +447,11 @@ void validateIPUT()
   if (clickCount!=2)
   {
     errorCHIOCE = true;
+    select2 = true;
   }
   else
   {
+    select2 = false;
     int ct = 0;
     for (int i=0;i<8;i=i+1)
     {
@@ -460,9 +465,11 @@ void validateIPUT()
     if (hamminDIST(iT[0], iT[1]))
     {
       errorCHIOCE = true;
+      hamming = true;
     }
     else
     {
+      hamming = false;
       errorCHIOCE = false;
       stageTWOshow = true;
       showStageTWO();
@@ -615,10 +622,10 @@ void giveSLIDERS()
     //fill(200, 20*i, 40);
     fill(120);
     rect(150, 270+40*i, 420, 10);
-    for (int j=0;j<22;j++)
+    for (int j=0;j<220;j++)
     {
       fill(150);
-      line(150+20*j, 270+40*i, 150+20*j, 285+40*i);
+      line(150+2*j, 270+40*i, 150+2*j, 285+40*i);
     }
   }
   //the markers
