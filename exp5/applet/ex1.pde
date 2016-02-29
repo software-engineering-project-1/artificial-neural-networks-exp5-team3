@@ -147,7 +147,7 @@ void drawOPTIONS()
     //text("THIS IS THE SECOND PART OF THE EXPERIMENT", 170, 180);
     //text("MOVE THE MOUSE OVER THE STATES",240,180);
     text("CLICK OVER THE STATES TO CHOOSE THEM AS MINIMUM ENERGY STATES", 110, 210);
-    text("YOU CAN CHOOSE AT MOST TWO STATES AS MINIMUM", 180, 240); 
+    text("YOU CAN CHOOSE EXACTLY TWO STATES", 180, 240); 
     text("MAKE SURE THEY ARE SEPARATED BY MORE THAN ONE HAMMING DISTANCE", 100, 270);
     createDIAG();
   }
@@ -225,8 +225,8 @@ void drawRECTS()
     }
 
     textSize(14);
-    text(cTEMP[0], tempX+100*i+35, tempY+15);
-    text(cTEMP[1], tempX+100*i+10, tempY+30);
+    text(cTEMP[1], tempX+100*i+35, tempY+15);
+    text(cTEMP[0], tempX+100*i+10, tempY+30);
     text(cTEMP[2], tempX+100*i+60, tempY+30);
     noFill();
   }
@@ -256,8 +256,8 @@ void trackMOVEMENT()
         rect(pivotX+100*i, pivotY, 75, 50);
         char[] cTEMP = binArr[i].toCharArray();
         fill(255);
-        text(cTEMP[0], pivotX+100*i+35, pivotY+15);
-        text(cTEMP[1], pivotX+100*i+10, pivotY+30);
+        text(cTEMP[1], pivotX+100*i+35, pivotY+15);
+        text(cTEMP[0], pivotX+100*i+10, pivotY+30);
         text(cTEMP[2], pivotX+100*i+60, pivotY+30);
         noFill();
       }
@@ -282,7 +282,19 @@ void setStates()
 {
   for (int cc=0;cc<int(pow(2,nUnits));cc++)
   {
-    String s1 = binary(cc, 3);
+    int x = cc;
+    String s1 = "";
+    int cnt = 3;
+    while (cnt > 0) {
+      cnt = cnt - 1;
+      if (x%2 == 0) {
+        s1 = concat("0",s1);
+      } else {
+        s1 = concat("1",s1);
+      }
+      x = int(x/2);
+    }
+
     staTES s = new staTES();
     s.staTE = s1;
     binArr[cc] = s1;
