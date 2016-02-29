@@ -95,10 +95,6 @@ void drawOPTIONS()
 
     clickCount = 0;
     stageONE = false;
-    for (int i=0;i<8;i=i+1)
-    {
-      stateARR[i].selected = false;
-    }
   }
 
   if (stageTWOshow==true && stageTHREEshow == false)
