@@ -1,3 +1,4 @@
+// initialize necessary parameters
 boolean[] mark = new boolean[6];
 float[] valA = new float[6];
 int nUnits=3;
@@ -27,6 +28,7 @@ boolean hamming = false;
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
+// drawing the hop field model
 void createDIAG()
 {
   fill(0, 0, 200);
@@ -162,7 +164,7 @@ void drawOPTIONS()
     rect(0, 30, 800, 510);
 
 
-
+// Create buttons to go back to stage one and stage two
     fill(200, 200, 0);
     rect(40, 380, 150, 35);
     rect(40, 450, 150, 35);
